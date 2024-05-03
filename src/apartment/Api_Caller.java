@@ -30,7 +30,7 @@ public class Api_Caller {
 	
     private String serviceKey = "aFaYNwN4cILVTvYDfYL3Cq37TtGoDHXLhbbk2qfEwXuVVhMMUtTdaJCoFAP/0/22YRvXvWs9OKOQB036Tj31Rg==";
     private String lawdCd;
-    private String dealYmd = "202404";
+    private String dealYmd;
 
     public String callApi(int pageNo, int numOfRows) {
     	
@@ -98,8 +98,10 @@ public class Api_Caller {
                     parse = (long) (Long.parseLong(거래금액));
                     double amount = parse/10000.0;
                     
-                    results.append(String.format("%s년 %s월 %s일 | 법정동: %s | 도로명: %s | 아파트: %s | 거래금액: %.1f억 | 전용면적: %s㎡ | %s층\n",
-                            거래년, 거래월, 거래일, 법정동, 도로명, 아파트, amount, 전용면적, 층));
+                    double 평 = Double.parseDouble(전용면적) * 0.3025;
+                    
+                    results.append(String.format("%s년 %s월 %s일 | 법정동: %s | 도로명: %s | 아파트: %s \n 거래금액: %.1f억 | 전용면적: %s㎡(%.1f평) | %s층\n",
+                            거래년, 거래월, 거래일, 법정동, 도로명, 아파트, amount, 전용면적,평, 층));
                 }
             }
             return results.toString();
